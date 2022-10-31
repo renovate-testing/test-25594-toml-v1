@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "renovate-toml-v1-repro"
+version = "0.1.0"
+description = ""
+authors = ["Braden Mars <bradenmars@bradenmars.me>"]
+readme = "README.md"
+packages = [{include = "renovate_toml_v1_repro"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
