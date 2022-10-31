@@ -4,6 +4,8 @@ This reproduction demonstrates how renovate fails to parse a valid pyproject.tom
 
 You can see the parsing error via the action logs [here](https://github.com/BradenM/renovate-toml-v1-repro/actions/runs/3358868498/jobs/5566325881#step:2:397).
 
+See renovatebot/renovate#18668 for more details.
+
 ## The Bug
 
 The exact error is as follows:
