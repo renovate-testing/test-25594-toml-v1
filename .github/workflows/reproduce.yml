@@ -1,0 +1,39 @@
+name: Reproduce
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 0 * * *
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate pyproject.toml with poetry.
+    env:
+      POETRY_HOME: /opt/poetry
+      POETRY_URL: https://install.python-poetry.org/
+      POETRY_VERSION: 1.2.2
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install poetry
+        run: curl -sSL ${{ env.POETRY_URL }} | python - --version ${{ env.POETRY_VERSION }}
+
+      - name: Validate pyproject.toml
+        run: $POETRY_HOME/bin/poetry check
+
+  reproduce:
+    runs-on: ubuntu-latest
+    name: Renovate unable to parse valid TOML v1.0.0
+    steps:
+      - name: Perform Dryrun
+        # You can see failure to parse pyproject.toml in the output logs.
+        env:
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+        run: |
+          docker run -e LOG_LEVEL=debug -e RENOVATE_TOKEN=${{ env.RENOVATE_TOKEN }} renovate/renovate --dry-run bradenm/renovate-toml-v1-repro
