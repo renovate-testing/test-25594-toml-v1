@@ -8,6 +8,7 @@ packages = [{include = "renovate_toml_v1_repro"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+flask = "^2.2.2"
 
 
 [build-system]
