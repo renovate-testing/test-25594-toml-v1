@@ -5,6 +5,10 @@ description = ""
 authors = ["Braden Mars <bradenmars@bradenmars.me>"]
 readme = "README.md"
 packages = [{include = "renovate_toml_v1_repro"}]
+include = [
+  "README.md",
+  { path = "tests", format = "sdist" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
